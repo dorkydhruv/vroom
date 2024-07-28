@@ -1,4 +1,4 @@
-"use  client";
+"use client";
 import React from "react";
 import {
   Sheet,
@@ -27,7 +27,7 @@ const MobileNav = () => {
           />
         </SheetTrigger>
         <SheetContent side="left" className="border-none bg-dark-1">
-          <Link href="/" className="flex items-center gap-1">
+          <Link href="/" className="flex-between items-center gap-1">
             <Image
               src="/icons/logo.svg"
               alt="logo"
@@ -35,22 +35,22 @@ const MobileNav = () => {
               height={40}
               className="max-sm:size-10"
             />
-            <p className="text-[26px] font-extrabold text-white ">Vrrom</p>
-            <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
-              <SheetClose asChild>
-                <section className="flex h-full flex-col gap-6 pt-6 text-white">
-                  <div className="flex flex-1 flex-col gap-6">
-                    {sideBarLinks.map((item) => {
-                      const isActive =
-                        pathname === item.route ||
-                        pathname.startsWith(`${item.route}/`);
+            <p className="text-[26px] font-extrabold text-white ">Vroom</p>
+          </Link>
+          <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
+            <SheetClose asChild>
+              <section className="flex h-full flex-col gap-6 pt-6 text-white">
+                <div className="flex flex-1 flex-col gap-6">
+                  {sideBarLinks.map((item) => {
+                    const isActive = pathname === item.route;
 
-                      return (
+                    return (
+                      <SheetClose asChild key={item.route}>
                         <Link
                           href={item.route}
                           key={item.label}
                           className={cn(
-                            "flex gap-4 items-center p-4 rounded-lg justify-start",
+                            "flex gap-4 items-center p-4 rounded-lg w-full max-w-60",
                             {
                               "bg-blue-1": isActive,
                             }
@@ -59,20 +59,18 @@ const MobileNav = () => {
                           <Image
                             src={item.imgUrl}
                             alt={item.label}
-                            width={24}
-                            height={24}
+                            width={20}
+                            height={20}
                           />
-                          <p className="text-lg font-semibold max-lg:hidden">
-                            {item.label}
-                          </p>
+                          <p className="font-semibold">{item.label}</p>
                         </Link>
-                      );
-                    })}
-                  </div>
-                </section>
-              </SheetClose>
-            </div>
-          </Link>
+                      </SheetClose>
+                    );
+                  })}
+                </div>
+              </section>
+            </SheetClose>
+          </div>
         </SheetContent>
       </Sheet>
     </section>
